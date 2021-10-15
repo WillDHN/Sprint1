@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprint 2</title>
+
+</head>
+<script>
+    let funciones = requiere('./app')
+
+    /* function checkNames(name) {
+         // var nombres = document.getElementsById("nombres").value;
+         if (nombres == "") {
+             alert("Campo nombres es requerido!");
+             return false;
+         }
+
+     }
+
+     function checkNumber(name) {
+         if (!isNaN(valor)) {
+             alert("Error: Solo números");
+             document.getElementById("cedula").value = "";
+         }
+     }*/
+
+    function validateForm() {
+        let nombres = document.form['myForm']['nombres'].values;
+        funciones.checkNames(nombres);
+        //return checkNames(nombres);
+    }
+
+    function validateFormEventNumbert(eventKey) {
+        var code = eventKey.charCode;
+        if (code < 48 || code > 57)
+            alert("Error: Solo se permite números")
+    }
+</script>
+
+<body>
+    <form action="myForm" method="post" onSubmit="return validateForm();">
+        <fieldset>
+            <legend>Formulario del cliente</legend>
+            <label for="nombres">Nombres:</label>
+            <input type="text" name="nombres" onblur="checkNames(this.value);" id="nombres" />
+            <label for="apellidos">Apellidos</label>
+            <input type="text" name="apellidos" id="apellidos" />
+            <label for="cedula">Cedula</label>
+            <input type="text" name="apellidos" id="apellidos" />
+            <input type="text" name="cedula" onkeypress="validateForEventNumbert(event);" id="cedula" />
+            <input type="submit" value="enviar!" />
+        </fieldset>
+    </form>
+</body>
+
+</html>
